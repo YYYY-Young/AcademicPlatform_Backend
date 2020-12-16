@@ -6,6 +6,7 @@ import king.dao.PaperDao;
 import king.entity.Paper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jooq.JooqTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.*;
@@ -30,7 +31,22 @@ public class Test1 {
         {
             JSONObject jsonObject= JSON.parseObject(str);
             Paper paper=new Paper();
+            paper.setPaperid(jsonObject.getInteger("id"));
             paper.setTitle(jsonObject.getString("title"));
+            paper.setAuthors(jsonObject.getString("authors"));
+            paper.setVenue(jsonObject.getString("venue"));
+            paper.setYear(jsonObject.getInteger("year"));
+            paper.setN_citation(jsonObject.getInteger("n_citation"));
+            paper.setPage_start(jsonObject.getString("page_start"));
+            paper.setPage_end(jsonObject.getString("page_end"));
+            paper.setDoc_type(jsonObject.getString("doc_type"));
+            paper.setPublisher(jsonObject.getString("publisher"));
+            paper.setVolume(jsonObject.getString("volume"));
+            paper.setIssue(jsonObject.getString("issue"));
+            System.out.println(i);
+            i++;
+
+            paperDao.save(paper);
 
         }
 

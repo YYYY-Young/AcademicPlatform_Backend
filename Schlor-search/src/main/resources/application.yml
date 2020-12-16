@@ -1,0 +1,17 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: search-part
+  elasticsearch:
+    rest.uris: http://127.0.0.1:9200
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 127.0.0.1:9300
+      repositories:
+        enabled: true

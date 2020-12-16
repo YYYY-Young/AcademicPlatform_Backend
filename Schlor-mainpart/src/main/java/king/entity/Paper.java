@@ -29,6 +29,7 @@ public class Paper {
     @NotNull(message = "id 不能为 null")
     private int id;
 
+    private int paperid;
     @NotEmpty(message = "文章标题不能为空")
     private String title;
 
