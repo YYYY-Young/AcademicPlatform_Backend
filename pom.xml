@@ -12,6 +12,7 @@
         <module>Schlor-mainpart</module>
         <module>Schlor-search</module>
         <module>common</module>
+        <module>Schlor-gateway</module>
     </modules>
 
     <!--父工程-->

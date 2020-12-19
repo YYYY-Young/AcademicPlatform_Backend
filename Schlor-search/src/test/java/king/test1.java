@@ -1,6 +1,7 @@
 package king;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import king.dao.Authordao;
 import king.dao.Paperdao;
@@ -8,6 +9,7 @@ import king.dao.Venuedao;
 import king.entity.Author;
 import king.entity.Paper;
 import king.entity.Venue;
+import king.service.Authorservice;
 import king.service.Paperservice;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -82,9 +84,9 @@ public class test1 {
     public void testauthordao(){
         ArrayList<Author>authors=new ArrayList<>();
         Pageable pageable= PageRequest.of(1, 20);
-        authors=authordao.findAuthorsByNameLike("david",pageable);
+        authors=authordao.findAuthorsByNameLike("david", pageable);
         for(Author author:authors){
-            System.out.println(author.getName());
+            System.out.println(author);
         }
     }
 
@@ -97,6 +99,21 @@ public class test1 {
         List<Paper>papers=paperservice.searchpaper("改革",0,20,0);
         for(Paper paper:papers){
             System.out.println(paper.getYear());
+        }
+    }
+    @Autowired
+    Authorservice authorservice;
+    @Test
+    public void authorsearchtest(){
+        List<Author> authors = authorservice.searchauthor("computer", 0, 10, 0);
+        System.out.println(authors.size());
+        for(Author author:authors){
+           JSONArray js= JSON.parseArray(author.getTags());
+            for(int i=0;i<js.size();++i){
+               JSONObject json= (JSONObject) js.get(i);
+                System.out.println(json.get("t"));
+            }
+            System.out.println("-----------------------------");
         }
     }
 }

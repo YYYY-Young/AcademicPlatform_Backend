@@ -17,8 +17,9 @@ public interface Authordao extends ElasticsearchRepository<Author,String> {
 
     Author findAuthorById(String id);
 
-    ArrayList<Author>findAuthorsByNameLike(String name, Pageable pageable);
+    ArrayList<Author>findAuthorsByNameLike(String keyword,Pageable pageable);
 
+    ArrayList<Author>findAuthorsByTagsLike(String name,Pageable pageable);
 
 
 

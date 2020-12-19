@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Schlor-search" />
         <module name="common" />
+        <module name="Schlor-gateway" />
         <module name="Schlor-mainpart" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="KingofScholar" options="-parameters" />
+      <module name="Schlor-gateway" options="-parameters" />
       <module name="Schlor-mainpart" options="-parameters" />
       <module name="Schlor-search" options="-parameters" />
       <module name="common" options="-parameters" />

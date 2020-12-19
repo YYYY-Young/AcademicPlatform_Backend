@@ -28,11 +28,11 @@ public class Venueservice {
 
     @Autowired
     ElasticsearchTemplate elasticsearchTemplate;
-    Venue findbyid(String id){
+    public Venue findbyid(String id){
         return venuedao.findVenueById(id);
     }
 
-    public List<Venue> searchpaper(String keyword, int pagenum, int pagesize) {
+    public List<Venue> searchvenue(String keyword, int pagenum, int pagesize) {
             NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
                     .withQuery(QueryBuilders.queryStringQuery(keyword))
                     .withPageable(PageRequest.of(pagenum, pagesize))
@@ -41,5 +41,8 @@ public class Venueservice {
 
             return elasticsearchTemplate.queryForList(nativeSearchQuery, Venue.class);
 
+    }
+    public List<Venue>findbyname(String name){
+        return venuedao.findVenueByDisplayNameLike(name);
     }
 }

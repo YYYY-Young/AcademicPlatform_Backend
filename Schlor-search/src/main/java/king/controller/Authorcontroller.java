@@ -27,4 +27,15 @@ public class Authorcontroller {
                                      @PathVariable("size")int size,@PathVariable("order")int order){
         return ResultFactory.buildSuccessResult(authorservice.searchauthor(keyword,num,size,order));
     }
+    @GetMapping("/api/author/search/name/{name}/{num}/{size}")
+    public Result getAuthorbyname(@PathVariable("name")String name,@PathVariable("num")int num,
+                                  @PathVariable("size")int size){
+        return ResultFactory.buildSuccessResult(authorservice.findbyname(name,num,size));
+    }
+    @GetMapping("/api/author/search/tags/{name}/{num}/{size}")
+    public Result getAuthorbytags(@PathVariable("name")String name,@PathVariable("num")int num,
+                                  @PathVariable("size")int size){
+        return ResultFactory.buildSuccessResult(authorservice.findbytags(name,num,size));
+    }
+
 }

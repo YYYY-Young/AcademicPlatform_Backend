@@ -3,6 +3,8 @@ package king.dao;
 import king.entity.Venue;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
+import java.util.ArrayList;
+
 /**
  * @Classname Venuedao
  * @Description TODO
@@ -11,4 +13,8 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
  */
 public interface Venuedao extends ElasticsearchRepository<Venue,String> {
     Venue findVenueById(String id);
+
+    ArrayList<Venue>findVenueByDisplayNameLike(String name);
+
+
 }

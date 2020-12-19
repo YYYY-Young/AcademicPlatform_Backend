@@ -13,4 +13,5 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 public interface Paperdao extends ElasticsearchRepository<Paper,String> {
 
     Paper findPaperById(String id);
+
 }

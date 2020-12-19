@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import king.dao.PaperDao;
 import king.entity.Paper;
+import king.service.SearchService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jooq.JooqTest;
@@ -54,5 +55,12 @@ public class Test1 {
         System.out.println("dayinle"+i);
         inputStream.close();
         bufferedReader.close();
+    }
+    @Autowired
+    SearchService searchService;
+    @Test
+    public void test3(){
+        System.out.println(searchService.getAuthorbyname("david",0,10));
+
     }
 }
