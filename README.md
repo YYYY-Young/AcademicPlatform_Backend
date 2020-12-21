@@ -1,1 +1,0 @@
-# AcademicPlatform_Backend
