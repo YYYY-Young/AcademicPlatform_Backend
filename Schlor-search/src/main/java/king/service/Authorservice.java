@@ -9,6 +9,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -32,11 +33,12 @@ public class Authorservice {
    Authordao authordao;
    @Autowired
     ElasticsearchTemplate elasticsearchTemplate;
+
    public Author findbyid(String id){
        return authordao.findAuthorById(id);
    }
 
-    public List<Author> searchauthor(String keyword, int pagenum, int pagesize, int sort) {
+    public Page<Author> searchauthor(String keyword, int pagenum, int pagesize, int sort) {
         if(sort==0) {
             NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
                     .withQuery(QueryBuilders.queryStringQuery(keyword))
@@ -44,15 +46,14 @@ public class Authorservice {
                     .withSort(SortBuilders.fieldSort("n_pubs").order(SortOrder.DESC))
                     .build();
 
-            return elasticsearchTemplate.queryForList(nativeSearchQuery, Author.class);
+            return authordao.search(nativeSearchQuery);
         }else {
             NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
-
                     .withQuery(QueryBuilders.queryStringQuery(keyword))
                     .withPageable(PageRequest.of(pagenum, pagesize))
                     .withSort(SortBuilders.fieldSort("n_citation").order(SortOrder.DESC))
                     .build();
-            return elasticsearchTemplate.queryForList(nativeSearchQuery, Author.class);
+            return authordao.search(nativeSearchQuery);
         }
     }
     public ArrayList<Author>findbyname(String name,int pagenum, int pagesize){
@@ -63,6 +64,13 @@ public class Authorservice {
     public ArrayList<Author>findbytags(String name,int pagenum, int pagesize){
         Pageable pageable= PageRequest.of(pagenum, pagesize);
         return authordao.findAuthorsByTagsLike(name,pageable);
+    }
+
+    public Long findall(){
+        NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
+                .build();
+        Page<Author> authors=authordao.search(nativeSearchQuery);
+        return authors.getTotalElements();
     }
 
 

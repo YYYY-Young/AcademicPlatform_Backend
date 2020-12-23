@@ -2,6 +2,7 @@ package king.dao;
 
 import king.entity.Author;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 import java.util.ArrayList;
@@ -20,8 +21,6 @@ public interface Authordao extends ElasticsearchRepository<Author,String> {
     ArrayList<Author>findAuthorsByNameLike(String keyword,Pageable pageable);
 
     ArrayList<Author>findAuthorsByTagsLike(String name,Pageable pageable);
-
-
 
 
 

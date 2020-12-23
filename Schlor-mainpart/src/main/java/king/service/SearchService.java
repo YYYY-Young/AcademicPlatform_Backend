@@ -32,18 +32,18 @@ public interface SearchService {
 
 
     @GetMapping("/api/paper/search/keyword/{keyword}/{num}/{size}/{order}")
-    public Result getPaperbykeyword(@PathVariable("keyword")String keyword, @PathVariable("num")int num,
-                                    @PathVariable("size")int size, @PathVariable("order")int order);
+    public Result getPaperbykeyword(@PathVariable("keyword") String keyword, @PathVariable("num") int num,
+                                    @PathVariable("size") int size, @PathVariable("order") int order);
 
 
     @GetMapping("/api/paper/search/id/{id}")
-    public Result getPaperbyId(@PathVariable("id")String id);
+    public Result getPaperbyId(@PathVariable("id") String id);
 
     @GetMapping("/api/venue/search/id/{id}")
-    public Result getVenuerbyId(@PathVariable("id")String id);
+    public Result getVenuerbyId(@PathVariable("id") String id);
 
     @GetMapping("/api/venue/search/keyword/{keyword}/{num}/{size}")
-    public Result getVenuebykeyword(@PathVariable("keyword")String keyword,@PathVariable("num")int num,
-                                    @PathVariable("size")int size);
+    public Result getVenuebykeyword(@PathVariable("keyword") String keyword, @PathVariable("num") int num,
+                                    @PathVariable("size") int size);
 }
 

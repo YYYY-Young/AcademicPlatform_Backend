@@ -10,4 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Created by lrf
  */
 public interface PaperDao extends JpaRepository<Paper,Integer> {
+
 }
